@@ -1,0 +1,64 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-black text-white sticky top-0 z-50">
+	<div class="container mx-auto px-4">
+		<nav class="flex items-center justify-between h-16">
+			<a href="/" class="text-2xl font-bold text-red-500">In 'n Out</a>
+			
+			<ul class="hidden md:flex space-x-8">
+				<li><a href="/" class={currentPath === '/' ? 'text-red-500' : 'hover:text-red-500 transition'}>Home</a></li>
+				<li class="relative group">
+					<a href="/services" class={currentPath.includes('/services') ? 'text-red-500' : 'hover:text-red-500 transition'}>Services</a>
+					<ul class="absolute top-full left-0 bg-black mt-2 py-2 w-48 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto">
+						<li><a href="/services/vehicle-wraps" class="block px-4 py-2 hover:bg-gray-800">Vehicle Wraps</a></li>
+						<li><a href="/services/ppf-installation" class="block px-4 py-2 hover:bg-gray-800">PPF Installation</a></li>
+						<li><a href="/services/window-tinting" class="block px-4 py-2 hover:bg-gray-800">Window Tinting</a></li>
+						<li><a href="/services/custom-work" class="block px-4 py-2 hover:bg-gray-800">Custom Work</a></li>
+					</ul>
+				</li>
+				<li class="relative group">
+					<a href="/locations" class={currentPath.includes('/locations') ? 'text-red-500' : 'hover:text-red-500 transition'}>Locations</a>
+					<ul class="absolute top-full left-0 bg-black mt-2 py-2 w-48 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto">
+						<li><a href="/locations/highland-park" class="block px-4 py-2 hover:bg-gray-800">Highland Park</a></li>
+						<li><a href="/locations/edison" class="block px-4 py-2 hover:bg-gray-800">Edison</a></li>
+						<li><a href="/locations/new-brunswick" class="block px-4 py-2 hover:bg-gray-800">New Brunswick</a></li>
+						<li><a href="/locations/piscataway" class="block px-4 py-2 hover:bg-gray-800">Piscataway</a></li>
+					</ul>
+				</li>
+				<li><a href="/gallery" class={currentPath === '/gallery' ? 'text-red-500' : 'hover:text-red-500 transition'}>Gallery</a></li>
+				<li><a href="/contact" class={currentPath === '/contact' ? 'text-red-500' : 'hover:text-red-500 transition'}>Contact</a></li>
+			</ul>
+			
+			<a href="tel:+1XXXXXXXXXX" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded font-semibold transition">Call Now</a>
+			
+			<!-- Mobile menu button -->
+			<button class="md:hidden" id="mobile-menu-button">
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+				</svg>
+			</button>
+		</nav>
+	</div>
+	
+	<!-- Mobile menu -->
+	<div id="mobile-menu" class="hidden md:hidden bg-black">
+		<ul class="px-4 py-4 space-y-2">
+			<li><a href="/" class="block py-2 hover:text-red-500">Home</a></li>
+			<li><a href="/services" class="block py-2 hover:text-red-500">Services</a></li>
+			<li><a href="/locations" class="block py-2 hover:text-red-500">Locations</a></li>
+			<li><a href="/gallery" class="block py-2 hover:text-red-500">Gallery</a></li>
+			<li><a href="/contact" class="block py-2 hover:text-red-500">Contact</a></li>
+		</ul>
+	</div>
+</header>
+
+<script>
+	const mobileMenuButton = document.getElementById('mobile-menu-button');
+	const mobileMenu = document.getElementById('mobile-menu');
+	
+	mobileMenuButton?.addEventListener('click', () => {
+		mobileMenu?.classList.toggle('hidden');
+	});
+</script>

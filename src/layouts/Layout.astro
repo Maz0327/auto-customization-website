@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+	canonical?: string;
+}
+
+const { title, description = "In 'n Out - Professional Vehicle Wraps, PPF Installation, Window Tinting & Car Customization in Highland Park, NJ. Same-day service available. Call now!", canonical } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Meta Tags -->
+		<meta name="robots" content="index, follow" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:site_name" content="In 'n Out Auto Customization" />
+		
+		<!-- Local Business Schema -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "AutoRepair",
+			"name": "In 'n Out Auto Customization",
+			"description": "Professional vehicle wraps, PPF installation, window tinting and car customization in Highland Park, NJ",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "Highland Park",
+				"addressLocality": "Highland Park",
+				"addressRegion": "NJ",
+				"postalCode": "08904",
+				"addressCountry": "US"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": "40.4959",
+				"longitude": "-74.4243"
+			},
+			"url": "https://innoutauto.com",
+			"telephone": "+1-XXX-XXX-XXXX",
+			"priceRange": "$$",
+			"openingHoursSpecification": [
+				{
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+					"opens": "08:00",
+					"closes": "18:00"
+				},
+				{
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": "Saturday",
+					"opens": "09:00",
+					"closes": "16:00"
+				}
+			],
+			"areaServed": [
+				{
+					"@type": "City",
+					"name": "Highland Park"
+				},
+				{
+					"@type": "City",
+					"name": "Edison"
+				},
+				{
+					"@type": "City",
+					"name": "New Brunswick"
+				},
+				{
+					"@type": "City",
+					"name": "Piscataway"
+				},
+				{
+					"@type": "City",
+					"name": "North Brunswick"
+				}
+			]
+		}
+		</script>
+		
+		{canonical && <link rel="canonical" href={canonical} />}
+		<title>{title}</title>
+	</head>
+	<body class="min-h-screen bg-gray-50">
+		<slot />
+	</body>
+</html>
